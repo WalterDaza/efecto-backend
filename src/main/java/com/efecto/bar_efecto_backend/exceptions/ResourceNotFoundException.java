@@ -15,7 +15,7 @@ public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException(String resourceName, String fieldName, long fieldValue) {
         //Super llama al contructor de la superclase (RuntimeException)
         //Luego ese mensaje se pasa al constructor de RuntimeException usando super(...).
-        super(String.format("%s No encontrado con : %s : '%s'", resourceName, fieldName, fieldValue));
+        super(String.format("%s no encontrado con %s : '%s'", resourceName, fieldName, fieldValue));
         this.resourceName = resourceName;
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;

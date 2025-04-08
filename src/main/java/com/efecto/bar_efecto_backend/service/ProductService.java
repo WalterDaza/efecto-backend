@@ -8,6 +8,11 @@ public interface ProductService {
 
     public ProductDTO createProduct(ProductDTO productDTO);
 
-    //public List<ProductDTO> getProducts ();
+    public List<ProductDTO> getProducts ();
 
+    public ProductDTO getProductById (long id);
+
+    public ProductDTO updateProduct (ProductDTO productDTO, long id);
+
+    public void removeProduct (long id);
 }

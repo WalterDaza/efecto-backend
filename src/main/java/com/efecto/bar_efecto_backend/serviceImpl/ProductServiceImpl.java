@@ -3,14 +3,18 @@ package com.efecto.bar_efecto_backend.serviceImpl;
 import com.efecto.bar_efecto_backend.dto.ProductDTO;
 import com.efecto.bar_efecto_backend.exceptions.ResourceNotFoundException;
 import com.efecto.bar_efecto_backend.mapper.ProductMapper;
+import com.efecto.bar_efecto_backend.model.Category;
 import com.efecto.bar_efecto_backend.model.Product;
+import com.efecto.bar_efecto_backend.repository.CategoryRepository;
 import com.efecto.bar_efecto_backend.repository.ProductRepository;
 import com.efecto.bar_efecto_backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -19,37 +23,51 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private ProductMapper productMapper;
 
-    @Override
-    public ProductDTO createProduct(ProductDTO productDTO){
+    public ProductDTO createProduct(ProductDTO productDTO) {
+        // Validar que la categoría exista
+        Category category = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(() -> new IllegalArgumentException("Categoría no encontrada con ID: " + productDTO.getCategoryId()));
 
-        //Convertimos de DTO a entidad
-        Product productRequest = productMapper.toEntity(productDTO);
+        // Convertir DTO a entidad
+        Product product = productMapper.toEntity(productDTO);
 
-        Product newProduct = productRepository.save(productRequest); //Se guarda en base de datos con JPA
+        // Asegurarse de que la categoría es la correcta (aunque mapStruct la puede llenar con solo el ID)
+        product.setCategory(category);
 
-        //Convertimos de entidad a DTO
-        ProductDTO productResponse = productMapper.toDTO(newProduct);
+        // Guardar en base de datos
+        Product savedProduct = productRepository.save(product);
 
-        return productResponse;
+        // Devolver DTO
+        return productMapper.toDTO(savedProduct);
     }
 
     @Override
     public List<ProductDTO> getProducts() {
-        List<Product> products = productRepository.findAll();
-        return products.stream().map(product -> productMapper.toDTO(product)).collect(Collectors.toList());
+        List<Product> productsList = productRepository.findAll();
+        return productsList.stream().map(product -> productMapper.toDTO(product)).collect(Collectors.toList());
     }
 
     @Override
-    public ProductDTO getProductById(long id) {
-        Product product = productRepository.findById(id) //Se utiliza JPA para buscar por id en la bd
-                .orElseThrow(() -> new ResourceNotFoundException("Producto", "id", id)); //Si no encuentra nada utilizamos la excepcion y le pasamos los parametros
-        return productMapper.toDTO(product); //Se pasa a DTO para enviar resultado
+    public ProductDTO getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Producto", "id", id));
+        return productMapper.toDTO(product);
     }
 
     @Override
-    public ProductDTO updateProduct(ProductDTO productDTO, long id) {
+    public List<ProductDTO> getProductByCategoryId(Long categoryId) {
+        List <Product> productsListByCtegory = productRepository.findByCategoryId(categoryId);
+        return productsListByCtegory.stream().map(product -> productMapper.toDTO(product)).collect(Collectors.toList());
+    }
+
+    @Override
+    public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
+
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto", "id", id));
 
@@ -58,15 +76,24 @@ public class ProductServiceImpl implements ProductService {
         product.setPriceSale(productDTO.getPriceSale());
         product.setImage(productDTO.getImage());
 
+        // Buscar la categoría y asignarla al producto
+        Category category = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría", "id", productDTO.getCategoryId()));
+
+        product.setCategory(category);
+
         Product saveProduct = productRepository.save(product);
 
         return productMapper.toDTO(saveProduct);
     }
 
     @Override
-    public void removeProduct(long id) {
+    public void removeProduct(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto", "id", id));
+
         productRepository.delete(product);
     }
+
+
 }

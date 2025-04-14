@@ -2,6 +2,8 @@ package com.efecto.bar_efecto_backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+
+
 import java.math.BigDecimal;
 
 @Entity
@@ -26,6 +28,18 @@ public class Product {
     private BigDecimal priceSale;
 
     private String image;
+
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Long getId() {
         return id;
@@ -67,15 +81,18 @@ public class Product {
         this.image = image;
     }
 
-    public Product(Long id, String nameProduct, BigDecimal pricePurchase, BigDecimal priceSale, String image) {
+    public Product(Long id, String nameProduct, BigDecimal pricePurchase, BigDecimal priceSale, String image, Category category) {
         this.id = id;
         this.nameProduct = nameProduct;
         this.pricePurchase = pricePurchase;
         this.priceSale = priceSale;
         this.image = image;
+        this.category = category;
     }
 
     public Product() {
     }
+
+
 }
 

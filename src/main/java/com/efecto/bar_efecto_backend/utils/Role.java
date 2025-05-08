@@ -14,6 +14,7 @@ public enum Role {
     )),
 
     ADMINISTRATOR(Arrays.asList(
+            Permission.CREATE_ONE_USER,
             Permission.READ_ALL_PRODUCTS,
             Permission.READ_PRODUCT_BY_ID,
             Permission.READ_ALL_PRODUCT_CATEGORY,

@@ -2,6 +2,9 @@ package com.efecto.bar_efecto_backend.utils;
 
 public enum Permission {
 
+    //Register ****************************************
+    CREATE_ONE_USER,
+
     //Products ****************************************
 
     READ_ALL_PRODUCTS,

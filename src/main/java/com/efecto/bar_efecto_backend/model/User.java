@@ -28,6 +28,7 @@ public class User implements UserDetails {
     private String username;
     private String name;
     private String password;
+    private String email;
 
     @Enumerated(EnumType.STRING) //Guarde en la db el nombre del rol
     private Role role;

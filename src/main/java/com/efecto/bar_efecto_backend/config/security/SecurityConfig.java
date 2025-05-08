@@ -34,11 +34,12 @@ public class SecurityConfig {
 
                     //RUTAS PUBLICAS
                     authConfig.requestMatchers(HttpMethod.POST, "/auth/login").permitAll(); //Se indica que a la ruta Login es publica
-                    authConfig.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
                     authConfig.requestMatchers("/error").permitAll();
+                    authConfig.requestMatchers("/auth/forgot-password", "/auth/reset-password").permitAll();
 
                     //RUTAS PRIVADAS
-                    authConfig.requestMatchers(HttpMethod.GET, "/api/products").hasAuthority(Permission.READ_ALL_PRODUCTS.name()); //Se asigna el permiso que se debe tener para acceder
+                    authConfig.requestMatchers(HttpMethod.POST, "/auth/register").hasAuthority(Permission.CREATE_ONE_USER.name()); //Se asigna el permiso que se debe tener para acceder
+                    authConfig.requestMatchers(HttpMethod.GET, "/api/products").hasAuthority(Permission.READ_ALL_PRODUCTS.name());
                     authConfig.requestMatchers(HttpMethod.GET, "/api/products/*").hasAuthority(Permission.READ_PRODUCT_BY_ID.name());
                     authConfig.requestMatchers(HttpMethod.GET, "/api/products/category/*").hasAuthority(Permission.READ_ALL_PRODUCT_CATEGORY.name());
                     authConfig.requestMatchers(HttpMethod.GET, "/api/categories").hasAuthority(Permission.READ_ALL_CATEGORIES.name());

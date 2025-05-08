@@ -60,6 +60,7 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(registerRequest.getPassword())) //Codifica la contraseña utilizando passwordEncoder antes de almacenarla en la base de datos para mayor seguridad.
                 .name(registerRequest.getName())
                 .role(registerRequest.getRole())
+                .email(registerRequest.getEmail())
                 .build();
 
         userRepository.save(user); //Usa el userRepository (una interfaz JpaRepository) para guardar el usuario en la base de datos.

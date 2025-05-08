@@ -4,6 +4,7 @@ import com.efecto.bar_efecto_backend.model.PasswordResetToken;
 import com.efecto.bar_efecto_backend.model.User;
 import com.efecto.bar_efecto_backend.repository.PasswordResetTokenRepository;
 import com.efecto.bar_efecto_backend.repository.UserRepository;
+import com.efecto.bar_efecto_backend.service.EmailService;
 import com.efecto.bar_efecto_backend.service.PasswordResetTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,7 +25,7 @@ public class PasswordResetTokenImpl implements PasswordResetTokenService {
     private UserRepository userRepository;
 
     @Autowired
-    private EmailServiceImpl emailService;
+    private EmailService emailService;
     @Override
     public void createPasswordResetToken(String email) {
         User user = userRepository.findByEmail(email)

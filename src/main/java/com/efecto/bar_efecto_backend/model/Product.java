@@ -2,11 +2,17 @@ package com.efecto.bar_efecto_backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import java.math.BigDecimal;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "products",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"name_product"})}
 )
@@ -32,67 +38,5 @@ public class Product {
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNameProduct() {
-        return nameProduct;
-    }
-
-    public void setNameProduct(String nameProduct) {
-        this.nameProduct = nameProduct;
-    }
-
-    public BigDecimal getPricePurchase() {
-        return pricePurchase;
-    }
-
-    public void setPricePurchase(BigDecimal pricePurchase) {
-        this.pricePurchase = pricePurchase;
-    }
-
-    public BigDecimal getPriceSale() {
-        return priceSale;
-    }
-
-    public void setPriceSale(BigDecimal priceSale) {
-        this.priceSale = priceSale;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Product(Long id, String nameProduct, BigDecimal pricePurchase, BigDecimal priceSale, String image, Category category) {
-        this.id = id;
-        this.nameProduct = nameProduct;
-        this.pricePurchase = pricePurchase;
-        this.priceSale = priceSale;
-        this.image = image;
-        this.category = category;
-    }
-
-    public Product() {
-    }
-
-
 }
 

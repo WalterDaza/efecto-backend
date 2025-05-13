@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum Role {
 
-    CUSTOMER(Arrays.asList(
+    EMPLOYEE(Arrays.asList(
             Permission.READ_ALL_PRODUCTS,
             Permission.READ_PRODUCT_BY_ID,
             Permission.READ_ALL_CATEGORIES,

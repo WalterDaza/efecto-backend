@@ -15,8 +15,8 @@ public class PasswordResetController {
     private PasswordResetTokenImpl passwordResetToken;
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<String> forgotPassword(@RequestParam String email) {
-        passwordResetToken.createPasswordResetToken(email);
+    public ResponseEntity<String> forgotPassword(@RequestParam String username) {
+        passwordResetToken.createPasswordResetToken(username);
         return ResponseEntity.ok("Se ha enviado un enlace de recuperación al correo.");
     }
 

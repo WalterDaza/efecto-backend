@@ -27,9 +27,11 @@ public class PasswordResetTokenImpl implements PasswordResetTokenService {
     @Autowired
     private EmailService emailService;
     @Override
-    public void createPasswordResetToken(String email) {
-        User user = userRepository.findByEmail(email)
+    public void createPasswordResetToken(String username) {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+
+        String email = user.getEmail();
 
         passwordResetTokenRepository.findByUser(user).ifPresent(passwordResetTokenRepository::delete);
 

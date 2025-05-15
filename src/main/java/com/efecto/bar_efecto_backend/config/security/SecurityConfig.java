@@ -38,6 +38,7 @@ public class SecurityConfig {
                     authConfig.requestMatchers("/auth/forgot-password", "/auth/reset-password").permitAll();
 
                     //RUTAS PRIVADAS
+                    //// PRODUCTOS Y CATEGORIAS
                     authConfig.requestMatchers(HttpMethod.POST, "/auth/register").hasAuthority(Permission.CREATE_ONE_USER.name()); //Se asigna el permiso que se debe tener para acceder
                     authConfig.requestMatchers(HttpMethod.GET, "/api/products").hasAuthority(Permission.READ_ALL_PRODUCTS.name());
                     authConfig.requestMatchers(HttpMethod.GET, "/api/products/*").hasAuthority(Permission.READ_PRODUCT_BY_ID.name());
@@ -50,6 +51,14 @@ public class SecurityConfig {
                     authConfig.requestMatchers(HttpMethod.PUT, "/api/categories/*").hasAuthority(Permission.UPDATE_ONE_CATEGORY.name());
                     authConfig.requestMatchers(HttpMethod.POST, "/api/products").hasAuthority(Permission.SAVE_ONE_PRODUCT.name());
                     authConfig.requestMatchers(HttpMethod.POST, "/api/categories").hasAuthority(Permission.SAVE_ONE_CATEGORY.name());
+                    //// MESAS
+                    authConfig.requestMatchers(HttpMethod.GET, "/api/tables").hasAuthority(Permission.READ_ALL_TABLES.name());
+                    authConfig.requestMatchers(HttpMethod.GET, "/api/tables/*").hasAuthority(Permission.READ_TABLE_BY_ID.name());
+                    authConfig.requestMatchers(HttpMethod.POST, "/api/tables").hasAuthority(Permission.SAVE_ONE_TABLE.name());
+                    authConfig.requestMatchers(HttpMethod.PUT, "/api/tables/*").hasAuthority(Permission.UPDATE_ONE_TABLE.name());
+                    authConfig.requestMatchers(HttpMethod.DELETE, "/api/tables/*").hasAuthority(Permission.DELETE_ONE_TABLE.name());
+
+
 
                     // RUTAS SWAGGER
                     authConfig.requestMatchers(

@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDTO {
+public class BarTableDTO {
     private Long id;
-    private String nameCategory;
-    private String image;
+    private String type;
+    private int numberTable;
 }

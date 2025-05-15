@@ -20,8 +20,14 @@ public enum Permission {
     READ_CATEGORY_BY_ID,
     SAVE_ONE_CATEGORY,
     UPDATE_ONE_CATEGORY,
-    DELETE_ONE_CATEGORY
-    ;
+    DELETE_ONE_CATEGORY,
 
+
+    //Tables ********************************************
+    READ_ALL_TABLES,
+    READ_TABLE_BY_ID,
+    SAVE_ONE_TABLE,
+    UPDATE_ONE_TABLE,
+    DELETE_ONE_TABLE
 
 }

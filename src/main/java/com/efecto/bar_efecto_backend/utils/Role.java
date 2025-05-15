@@ -10,7 +10,9 @@ public enum Role {
             Permission.READ_PRODUCT_BY_ID,
             Permission.READ_ALL_CATEGORIES,
             Permission.READ_CATEGORY_BY_ID,
-            Permission.READ_ALL_PRODUCT_CATEGORY
+            Permission.READ_ALL_PRODUCT_CATEGORY,
+            Permission.READ_ALL_TABLES,
+            Permission.READ_TABLE_BY_ID
     )),
 
     ADMINISTRATOR(Arrays.asList(
@@ -25,7 +27,12 @@ public enum Role {
             Permission.UPDATE_ONE_PRODUCT,
             Permission.UPDATE_ONE_CATEGORY,
             Permission.SAVE_ONE_PRODUCT,
-            Permission.SAVE_ONE_CATEGORY
+            Permission.SAVE_ONE_CATEGORY,
+            Permission.READ_ALL_TABLES,
+            Permission.READ_TABLE_BY_ID,
+            Permission.SAVE_ONE_TABLE,
+            Permission.UPDATE_ONE_TABLE,
+            Permission.DELETE_ONE_TABLE
     ));
 
     private List<Permission> permissions;

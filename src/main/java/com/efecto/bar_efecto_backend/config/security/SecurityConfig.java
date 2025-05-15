@@ -51,12 +51,17 @@ public class SecurityConfig {
                     authConfig.requestMatchers(HttpMethod.PUT, "/api/categories/*").hasAuthority(Permission.UPDATE_ONE_CATEGORY.name());
                     authConfig.requestMatchers(HttpMethod.POST, "/api/products").hasAuthority(Permission.SAVE_ONE_PRODUCT.name());
                     authConfig.requestMatchers(HttpMethod.POST, "/api/categories").hasAuthority(Permission.SAVE_ONE_CATEGORY.name());
-                    //// MESAS
+                    //// MESAS y MEDIOS DE PAGO
                     authConfig.requestMatchers(HttpMethod.GET, "/api/tables").hasAuthority(Permission.READ_ALL_TABLES.name());
+                    authConfig.requestMatchers(HttpMethod.GET, "/api/payment").hasAuthority(Permission.READ_ALL_PAYMENTMETHOD.name());
                     authConfig.requestMatchers(HttpMethod.GET, "/api/tables/*").hasAuthority(Permission.READ_TABLE_BY_ID.name());
+                    authConfig.requestMatchers(HttpMethod.GET, "/api/payment/*").hasAuthority(Permission.READ_PAYMENTMETHOD_BY_ID.name());
                     authConfig.requestMatchers(HttpMethod.POST, "/api/tables").hasAuthority(Permission.SAVE_ONE_TABLE.name());
+                    authConfig.requestMatchers(HttpMethod.POST, "/api/payment").hasAuthority(Permission.SAVE_ONE_PAYMENTMETHOD.name());
                     authConfig.requestMatchers(HttpMethod.PUT, "/api/tables/*").hasAuthority(Permission.UPDATE_ONE_TABLE.name());
+                    authConfig.requestMatchers(HttpMethod.PUT, "/api/payment/*").hasAuthority(Permission.UPDATE_ONE_PAYMENTMETHOD.name());
                     authConfig.requestMatchers(HttpMethod.DELETE, "/api/tables/*").hasAuthority(Permission.DELETE_ONE_TABLE.name());
+                    authConfig.requestMatchers(HttpMethod.DELETE, "/api/payment/*").hasAuthority(Permission.DELETE_ONE_PAYMENTMETHOD.name());
 
 
 

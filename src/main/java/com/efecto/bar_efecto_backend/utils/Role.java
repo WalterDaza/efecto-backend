@@ -12,7 +12,9 @@ public enum Role {
             Permission.READ_CATEGORY_BY_ID,
             Permission.READ_ALL_PRODUCT_CATEGORY,
             Permission.READ_ALL_TABLES,
-            Permission.READ_TABLE_BY_ID
+            Permission.READ_TABLE_BY_ID,
+            Permission.READ_ALL_PAYMENTMETHOD,
+            Permission.READ_PAYMENTMETHOD_BY_ID
     )),
 
     ADMINISTRATOR(Arrays.asList(
@@ -32,7 +34,12 @@ public enum Role {
             Permission.READ_TABLE_BY_ID,
             Permission.SAVE_ONE_TABLE,
             Permission.UPDATE_ONE_TABLE,
-            Permission.DELETE_ONE_TABLE
+            Permission.DELETE_ONE_TABLE,
+            Permission.READ_ALL_PAYMENTMETHOD,
+            Permission.READ_PAYMENTMETHOD_BY_ID,
+            Permission.SAVE_ONE_PAYMENTMETHOD,
+            Permission.UPDATE_ONE_PAYMENTMETHOD,
+            Permission.DELETE_ONE_PAYMENTMETHOD
     ));
 
     private List<Permission> permissions;

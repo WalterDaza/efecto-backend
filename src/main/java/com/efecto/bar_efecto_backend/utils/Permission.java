@@ -28,6 +28,13 @@ public enum Permission {
     READ_TABLE_BY_ID,
     SAVE_ONE_TABLE,
     UPDATE_ONE_TABLE,
-    DELETE_ONE_TABLE
+    DELETE_ONE_TABLE,
+
+    //Payment Method ************************************
+    READ_ALL_PAYMENTMETHOD,
+    READ_PAYMENTMETHOD_BY_ID,
+    SAVE_ONE_PAYMENTMETHOD,
+    UPDATE_ONE_PAYMENTMETHOD,
+    DELETE_ONE_PAYMENTMETHOD
 
 }

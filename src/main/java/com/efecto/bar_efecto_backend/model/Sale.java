@@ -27,6 +27,10 @@ public class Sale {
 
     private BigDecimal outstandingBalance;
 
+    @ManyToOne
+    @JoinColumn(name = "bar_table_id")
+    private BarTable barTableId;
+
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 

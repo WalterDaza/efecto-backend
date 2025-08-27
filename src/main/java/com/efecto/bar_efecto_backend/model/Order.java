@@ -20,21 +20,17 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn (name = "payment_method_id")
-    private PaymentMethod paymentMethod;
+    private LocalDateTime dateOrder;
+    private boolean state;
+    private BigDecimal total;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductOrder> products;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderPayment> paymentMethods;
 
     @ManyToOne
     @JoinColumn(name = "sale_id")
     private Sale sale;
-
-    @ManyToOne
-    @JoinColumn(name = "bar_table_id")
-    private BarTable barTable;
-
-    private String customer;
-
-    private LocalDateTime dateOrder;
-
-    private BigDecimal total;
 }

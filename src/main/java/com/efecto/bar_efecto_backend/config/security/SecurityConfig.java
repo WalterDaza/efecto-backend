@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .sessionManagement(sessionManager ->
                         sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //Deshabilitar las sesiones Spring Security no guardará el estado del usuario en una sesión.
                 .authenticationProvider(authenticationProvider) //Obtiene los detalles del usuario (UserDetailsService) y Verifica la contraseña codificada (PasswordEncoder). que fue configurado en ApplicationConfig
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) //Se añade el filtro primero de jwt antes de pida la autenticación del usuario
                 .authorizeHttpRequests(authConfig -> { //Manejo de rutas con sus autorizaciones (privada - publica)
 
                     //RUTAS PUBLICAS

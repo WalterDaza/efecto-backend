@@ -4,7 +4,6 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Data
 @ResponseStatus(value = HttpStatus.NOT_FOUND) // indica que cuando se lanza esta excepción, Spring devolverá un HTTP 404 (Recurso no encontrado).
 public class ResourceNotFoundException extends RuntimeException{
 

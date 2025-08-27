@@ -21,7 +21,7 @@ public class BarTable {
     private String type;
     private int numberTable;
 
-    @OneToMany(mappedBy = "barTable", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    @OneToMany(mappedBy = "barTableId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sale> sales;
 
 }

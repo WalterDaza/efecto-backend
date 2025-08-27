@@ -24,5 +24,5 @@ public class PaymentMethod {
     private String nameMethodPayment;
 
     @OneToMany(mappedBy = "paymentMethod", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    private List<OrderPayment> orders;
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -38,5 +39,9 @@ public class Product {
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductOrder> orders;
+
 }
 
